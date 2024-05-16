@@ -1,5 +1,5 @@
 "use strict";
-const bin = require("../app")
+const bin = require("../src/app")
 
 const PORT = 3000;
 bin.listen(PORT,()=>{
