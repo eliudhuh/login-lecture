@@ -2,7 +2,7 @@
 
 const id = document.querySelector("#id"),
     psword = document.querySelector("#psword"),
-    loginBtn = document.querySelector("button");
+    loginBtn = document.querySelector("#button");
 
     
     loginBtn.addEventListener("click", login);
@@ -19,11 +19,11 @@ const id = document.querySelector("#id"),
             headers:{
                 "content-Type": "application/json"
                     },
-            body: JSON.stringify(req),
+            body: JSON.stringify(req), // req를 문자열로 변경 {"id":"","psword":""}
             })
             .then((res) => res.json())
             .then((res) => {
-                console.log(res)
+                console.log("login.js res =>",res)  // Check
                 if(res.success){
                     location.href = "/"
                 }else{

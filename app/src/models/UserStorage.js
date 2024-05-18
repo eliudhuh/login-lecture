@@ -25,12 +25,16 @@ class UserStorage{
 
     static getUserInfo(id){
         const users = this.#users;
-        const idx = users.id.indexOf(id);
-        const userKeys = Object.keys(users)  // {[a.b]} => [a,b]
+        const idx = users.id.indexOf(id);       // 위치를 반환한다.
+        const userKeys = Object.keys(users)     // {[a.b]} => [a,b]
+        console.log("idx => ",idx);             // Check
+        console.log("Object.keys(users) => ",userKeys); // Check
         const userInfo = userKeys.reduce((newUsers, info)=>{
-            newUsers[info] = users[info][idx];
-            return newUsers;
+            newUsers[info] = users[info][idx];  
+            console.log("newUsers =>",newUsers)  //Check
+            return newUsers;                     // >>> User.js
         },{});
+        console.log("userInfo =>",userInfo)      //Check
         return userInfo;
     }
 }
