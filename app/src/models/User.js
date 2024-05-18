@@ -7,16 +7,22 @@ class User{
     }
 
     login(){
-        const body = this.body;
-        const {id,psword } = UserStorage.getUserInfo(body.id);
+        const client = this.body;
+        const {id,psword } = UserStorage.getUserInfo(client.id);
         
         if(id){
-            if(id===body.id && psword === body.psword){
+            if(id===client.id && psword === client.psword){
                 return {success: true};                      // >>> home.ctrl,js
             }
             return {success: false, message: "비밀번호가  틀렸습니다."};            
         }
         return {success: false, message: "ID가 존제하지 않습니다."};
+    }
+    register(){
+        const client = this.body;
+        const response = UserStorage.save(client);
+        return response;
+        
     }
 }
 
