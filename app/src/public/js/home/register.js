@@ -12,8 +12,8 @@ const id = document.querySelector("#id"),
     function register(){
         if(!id.value)return alert("아이디를 입력해 주십시오")
         
-        if(psword !== confirmPsword)return alert("동일한 비밀번호를 입력해주십시오");
-        
+        if(psword.value !== confirmPsword.value)return alert("동일한 비밀번호를 입력해주십시오");
+
         const req = {
             id : id.value,
             name: name.value,
@@ -26,7 +26,7 @@ const id = document.querySelector("#id"),
             headers:{
                 "content-Type": "application/json"
                     },
-            body: JSON.stringify(req), 
+            body: JSON.stringify(req),  // >>> POST /register
             })
             .then((res) => res.json())
             .then((res) => {

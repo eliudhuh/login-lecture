@@ -17,16 +17,16 @@ const output = {
 };
 
 const process = {
-    login :(req, res) => {
+    login :async (req, res) => {
         const user = new User(req.body);
-        const response = user.login();
+        const response =await user.login();
         console.log("home.ctrl login response =>",response); //Check
         return res.json(response);   // >>>login.js
     },
 
-    register : (req, res) => {
+    register : async(req, res) => {
         const user = new User(req.body);
-        const response = user.register();
+        const response = await user.register();
         console.log("home.ctrl register response =>",response); //Check
         return res.json(response);   // >>>register.js
     }

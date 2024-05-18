@@ -6,9 +6,9 @@ class User{
         this.body = body;
     }
 
-    login(){
+    async login(){
         const client = this.body;
-        const {id,psword } = UserStorage.getUserInfo(client.id);
+        const {id,psword } =await UserStorage.getUserInfo(client.id);
         
         if(id){
             if(id===client.id && psword === client.psword){
@@ -18,11 +18,15 @@ class User{
         }
         return {success: false, message: "ID가 존제하지 않습니다."};
     }
-    register(){
+    async register(){
         const client = this.body;
-        const response = UserStorage.save(client);
-        return response;
-        
+        try{
+            const response =await UserStorage.save(client);
+            return response;
+        }
+        catch(error){
+            return {success: false, message: error};;
+        }
     }
 }
 
