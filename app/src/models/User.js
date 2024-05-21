@@ -8,16 +8,20 @@ class User{
 
     async login(){
         const client = this.body;
-        const {id,psword } =await UserStorage.getUserInfo(client.id);
-        
-        if(id){
-            if(id===client.id && psword === client.psword){
-                return {success: true};                      // >>> home.ctrl,js
+        try{
+            const {id,psword } = await UserStorage.getUserInfo(client.id);  
+            if(id){
+                if(id===client.id && psword === client.psword){
+                    return {success: true};                      // >>> home.ctrl,js
+                }
+                return {success: false, message: "비밀번호가  틀렸습니다."};            
             }
-            return {success: false, message: "비밀번호가  틀렸습니다."};            
+            return {success: false, message: "ID가 존제하지 않습니다."};
+        }catch(err){
+            return {success : false, message : err};
         }
-        return {success: false, message: "ID가 존제하지 않습니다."};
     }
+
     async register(){
         const client = this.body;
         try{
